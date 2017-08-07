@@ -24,4 +24,14 @@ public interface Hero {
      * ´òÓ¡Ó¢ÐÛ×´Ì¬
      */
     public void printHeroState();
+
+    /**
+     * ´òÓ¡Ó¢ÐÛ×´Ì¬²Ëµ¥
+     */
+    public void printHeroStateMenu();
+
+    /**
+     *
+     */
+    public void getEquipment();
 }

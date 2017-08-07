@@ -87,7 +87,7 @@ public class ToolsImpl implements Tools {
     }
 
     public int getMaxNameLengthInBootyBox(Vector<RootItem> objBox) {
-        if (objBox.size()>0&&objBox != null) {
+        if (objBox.size() > 0) {
             int max = getStringLength(objBox.get(0).getName());
             for (RootItem item : objBox) {
                 if (getStringLength(item.getName()) > max)
@@ -101,7 +101,7 @@ public class ToolsImpl implements Tools {
 
     @Override
     public int getMaxNameLengthInPosionBox(Vector<Posion> objBox) {
-        if (objBox.size()>0&&objBox != null) {
+        if (objBox.size() > 0) {
             int max = getStringLength(objBox.get(0).getName());
             for (Posion item : objBox) {
                 if (getStringLength(item.getName()) > max)
@@ -115,7 +115,7 @@ public class ToolsImpl implements Tools {
 
     @Override
     public int getMaxNameLengthInArmorBox(Vector<Armor> objBox) {
-        if (objBox.size()>0&&objBox != null) {
+        if (objBox.size() > 0) {
             int max = getStringLength(objBox.get(0).getName());
             for (Armor item : objBox) {
                 if (getStringLength(item.getName()) > max)
@@ -129,7 +129,7 @@ public class ToolsImpl implements Tools {
 
     @Override
     public int getMaxNameLengthInWeaponBox(Vector<Weapon> objBox) {
-        if (objBox.size()>0&&objBox != null) {
+        if (objBox.size() > 0) {
             int max = getStringLength(objBox.get(0).getName());
             for (Weapon item : objBox) {
                 if (getStringLength(item.getName()) > max)

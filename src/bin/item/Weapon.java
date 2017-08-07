@@ -85,6 +85,13 @@ public class Weapon extends Equipment {
         System.out.printf("\nÄ§·¨´©Í¸:%d\n", MagicPenetration);
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Weapon weapon = null;
+        weapon = (Weapon)super.clone();
+        return weapon;
+    }
+
     public int getAttack() {
         return Attack;
     }

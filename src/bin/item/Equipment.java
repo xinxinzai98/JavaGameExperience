@@ -28,6 +28,13 @@ public abstract class Equipment extends RootItem {
         System.out.printf("\nµÈ¼¶:Lv %d",Level);
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Equipment equip = null;
+        equip = (Equipment)super.clone();
+        return equip;
+    }
+
     public int getStrength() {
         return Strength;
     }

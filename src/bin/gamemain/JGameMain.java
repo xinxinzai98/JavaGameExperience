@@ -106,7 +106,7 @@ public class JGameMain implements GameMain {
                     }
                 } else if (checkInput("状态")) {
                     Ben.setMenuState(JHeroMenuState.MenuHeroState);
-                    // 待添加的状态功能
+                    Ben.printHeroState();
                     return;
                 }
 
@@ -116,7 +116,9 @@ public class JGameMain implements GameMain {
                         if (!Ben.PACKAGE.mainPackageFuncition(Ben.getPackageState(), info)) {// 武器界面功能
                             Ben.printPackageMenu();
                             Ben.setPackageState(JHeroMenuPackageState.PackageNormal);
-                        } else
+                        } else{
+                            Ben.getEquipment();
+                        }
                             return;
                     } else if (checkInput("武器")) {
                         Ben.setPackageState(JHeroMenuPackageState.PackageWeapon);

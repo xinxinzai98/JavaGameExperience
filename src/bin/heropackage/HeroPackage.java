@@ -24,8 +24,18 @@ public class HeroPackage {
     private Vector<Posion> PosionBox;
     private ToolsImpl Tools;
     private JHeroMenuPackageSortState sortState;
+    private int lastWeaponNum;
+    private int lastArmorNum;
+    private int lastPosionNum;
+    private boolean checkstate;
+    private boolean EquitmentWeaponstate;
 
     public HeroPackage() {
+        lastWeaponNum = 0;
+        lastArmorNum = 0;
+        lastPosionNum = 0;
+        checkstate = false;
+        EquitmentWeaponstate = false;
         ArmorBox = new Vector<>(0);
         WeaponBox = new Vector<>(0);
         BootyBox = new Vector<>(0);
@@ -145,15 +155,29 @@ public class HeroPackage {
     }
 
     private void mainPackageWeapon(String iput) {
-        if (iput.contains("查看")) {
+        if (checkstate) {
+            if (iput.equals("是")) {
+                EquitmentWeaponstate = true;
+                checkstate = false;
+                return;
+            } else if (iput.equals("否")) {
+                lastWeaponNum = 0;
+                checkstate = false;
+                return;
+            } else {
+                System.out.printf("您的输入有误！请输入[是\\否]");
+                return;
+            }
+        } else if (iput.contains("查看")) {
             String[] str = iput.split("查看{1}");
-            int num;
             for (String aStr : str) {
                 if (aStr.matches("[1-9]{1,}")) {
                     BigInteger integer = new BigInteger(aStr);
-                    num = integer.intValue();
-                    checkWeaponItem(num);
-                    //待实现装备功能
+                    lastWeaponNum = integer.intValue();
+                    if (checkWeaponItem(lastWeaponNum)) {
+                        System.out.printf("您[是\\否]要装备该装备?");
+                        checkstate = true;
+                    }
                     return;
                 }
             }
@@ -211,6 +235,13 @@ public class HeroPackage {
             }
         }
         printPackageHelp(JHeroMenuPackageState.PackageWeapon);
+    }
+
+    public Weapon getWeapon() {
+        if (lastWeaponNum > 0) {
+            return WeaponBox.get(lastWeaponNum-1);
+        }else
+            return null;
     }
 
     /**
@@ -736,12 +767,14 @@ public class HeroPackage {
             BootyBox.get(numInBox - 1).printItemInfo();
     }
 
-    private void checkWeaponItem(int numInBox) {
+    private boolean checkWeaponItem(int numInBox) {
         if (numInBox > 0) {
             System.out.printf("你要查看的是%s号物品", numInBox);
             WeaponBox.get(numInBox - 1).printItemInfo();
+            return true;
         } else {
             System.out.printf("您输入的编号不存在！请重新输入");
+            return false;
         }
     }
 
@@ -921,6 +954,14 @@ public class HeroPackage {
             }
         }
         return dupe;
+    }
+
+    public boolean isEquitmentWeaponstate() {
+        return EquitmentWeaponstate;
+    }
+
+    public void setEquitmentWeaponstate(boolean equitmentWeaponstate) {
+        EquitmentWeaponstate = equitmentWeaponstate;
     }
 
 }

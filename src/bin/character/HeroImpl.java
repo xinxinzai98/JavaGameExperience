@@ -4,6 +4,7 @@ import bin.common.JHeroMenuPackageState;
 import bin.common.JHeroMenuState;
 import bin.common.JHeroState;
 import bin.common.JItemType;
+import bin.heropackage.HeroEquipment;
 import bin.heropackage.HeroPackage;
 import bin.util.ToolsImpl;
 
@@ -23,6 +24,7 @@ public class HeroImpl extends AnimalImpl implements Hero {
     private JHeroMenuPackageState packageState;      //背包状态宏定义
     private ToolsImpl Tools;            //工具类
     public HeroPackage PACKAGE;         //背包类
+    private HeroEquipment heroEquipment;//英雄装备
 
     public HeroImpl() {
         super();
@@ -118,6 +120,35 @@ public class HeroImpl extends AnimalImpl implements Hero {
         System.out.printf("\n魔法抗性:%s", super.getMagicResistance());
         System.out.printf("\n物理穿透:%s", super.getArmorPenetration());
         System.out.printf("\n魔法穿透:%s", super.getMagicPenetration());
+        System.out.printf("\n当前装备");
+        System.out.printf("\n武器:%s",heroEquipment.getHeroWeapon().getName());
+        System.out.printf("\n头盔:%s",heroEquipment.getArmorHat().getName());
+        System.out.printf("\n上身:%s",heroEquipment.getArmorCoat().getName());
+        System.out.printf("\n下身:%s",heroEquipment.getArmorPant().getName());
+        System.out.printf("\n护甲:%s",heroEquipment.getArmorLegging().getName());
+        System.out.printf("\n鞋子:%s",heroEquipment.getArmorShoe().getName());
+    }
+
+    @Override
+    public void printHeroStateMenu() {
+        System.out.printf("在这个界面你可以\n");
+        String[] PackageMenu = {"[脱下(名称)]装备","[返回]上一级"};
+        Tools.printMenu(PackageMenu);
+    }
+
+    @Override
+    public void getEquipment() {
+        if (PACKAGE.isEquitmentWeaponstate()){
+            PACKAGE.setEquitmentWeaponstate(false);
+            if(PACKAGE.getWeapon().getLevel()>this.getLevel()){
+                System.out.printf("\n装备失败,您的等级lv%s低于武器等级%s",this.getLevel(),PACKAGE.getWeapon().getLevel());
+                return;
+            }else{
+
+                System.out.printf("\n装备成功");
+            }
+        }
+
     }
 
     public JHeroState getHeroState() {

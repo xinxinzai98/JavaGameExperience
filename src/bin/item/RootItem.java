@@ -6,7 +6,7 @@ import bin.common.JItemType;
 /**
  * 始祖物品
  */
-public class RootItem {
+public class RootItem implements Cloneable{
     private JItemType ItemType;   //物品类型
     private int ItemNum;    //物品编号
     private JItemQuality Quality;// 品质
@@ -73,6 +73,15 @@ public class RootItem {
                 return "未获取到品质";
         }
     }
+
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        RootItem booty = null;
+        booty = (RootItem)super.clone();
+        return booty;
+    }
+
     public int getPrice() {
         return Price;
     }

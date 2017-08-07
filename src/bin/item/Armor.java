@@ -42,6 +42,9 @@ public class Armor extends Equipment {
         int MpGain = 0; // 魔法值恢复速度
         JItemArmorType ArmorType = JItemArmorType.ArmorDefault; //护甲类型
         switch (super.getItemNum()) {
+            case 0:
+                Name = "无";
+                break;
             case 1:
                 Name = "布衣";
                 Price = 10;
@@ -123,6 +126,13 @@ public class Armor extends Equipment {
                 break;
         }
 
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Armor armor = null;
+        armor = (Armor)super.clone();
+        return armor;
     }
 
     public int getPhysicalResistance() {
